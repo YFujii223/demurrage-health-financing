@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index,follow">
+<title>減価通貨による医療費財源の設計 — 政策実装イメージ（補足資料）</title>
+<meta name="description" content="日本医療政策学会 第2回（2026, 京都大学, P-17）ポスター発表の補足資料。減価通貨（δ-µ マッチング原理）による医療費財源設計の政策実装イメージ。藤井佑機。">
+<meta property="og:title" content="減価通貨による医療費財源の設計 — 政策実装イメージ（補足資料）">
+<meta property="og:description" content="日本医療政策学会 第2回 ポスター発表の補足資料。">
+<meta property="og:type" content="article">
+<style>
+  :root{
+    --darkNavy:#0F1E3D; --navy:#1B3A5C; --blue:#2563EB; --lightBlue:#DBEAFE;
+    --paleBlue:#EFF6FF; --cream:#F8FAFC; --text:#1E293B; --muted:#64748B; --border:#CBD5E1;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--cream); color:var(--text);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:0 18px 48px}
+  header{
+    background:linear-gradient(135deg,var(--darkNavy),var(--navy));
+    color:#fff; padding:28px 18px 24px; border-bottom:4px solid var(--blue);
+  }
+  header .inner{max-width:880px; margin:0 auto}
+  .badge{
+    display:inline-block; font-size:12px; letter-spacing:.02em; color:var(--lightBlue);
+    border:1px solid rgba(219,234,254,.5); border-radius:999px; padding:3px 11px; margin-bottom:12px;
+  }
+  h1{font-size:23px; line-height:1.45; margin:.1em 0 .35em; font-weight:700}
+  .sub{font-size:15px; color:var(--lightBlue); margin:0 0 14px}
+  .author{font-size:13.5px; color:#dbe6f4; margin:0}
+  .actions{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 6px}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:700;
+    font-size:15px; padding:12px 18px; border-radius:10px; border:1.5px solid transparent;
+  }
+  .btn-primary{background:var(--blue); color:#fff}
+  .btn-primary:active{background:#1d4ed8}
+  .btn-ghost{background:#fff; color:var(--navy); border-color:var(--border)}
+  .btn small{font-weight:500; opacity:.85}
+  .note{
+    background:var(--paleBlue); border:1px solid var(--lightBlue); border-radius:10px;
+    padding:14px 16px; margin:22px 0; font-size:13.5px; color:var(--navy);
+  }
+  .note b{color:var(--blue)}
+  .preview{margin:24px 0 8px}
+  .preview h2{font-size:14px; color:var(--muted); font-weight:600; margin:0 0 8px}
+  .pdf-frame{
+    width:100%; height:78vh; min-height:420px; border:1px solid var(--border);
+    border-radius:10px; background:#fff;
+  }
+  .fallback{font-size:13px; color:var(--muted); margin-top:8px}
+  footer{
+    margin-top:30px; padding-top:16px; border-top:1px solid var(--border);
+    font-size:12px; color:var(--muted);
+  }
+  footer .lab{color:var(--navy); font-weight:700}
+  a{color:var(--blue)}
+  @media (max-width:560px){
+    h1{font-size:20px} .pdf-frame{height:62vh}
+    .btn{width:100%; justify-content:center}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="inner">
+    <span class="badge">日本医療政策学会 第2回（2026・京都大学）／ポスター P-17 補足資料</span>
+    <h1>減価通貨による医療費財源の設計<br>― 政策実装イメージ ―</h1>
+    <p class="sub">δ-µ マッチング原理を医療財政に適用したら、医療システムに何が起きるか</p>
+    <p class="author">藤井 佑機（山口大学医学部／株式会社アガティカ 代表取締役）</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="actions">
+    <a class="btn btn-primary" href="supplement.pdf" target="_blank" rel="noopener">
+      補足スライドを開く <small>（PDF）</small>
+    </a>
+    <a class="btn btn-ghost" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6742898" target="_blank" rel="noopener">
+      論文を読む <small>（SSRN 6742898）</small>
+    </a>
+    <a class="btn btn-ghost" href="supplement.pdf" download>
+      PDFを保存
+    </a>
+  </div>
+
+  <div class="note">
+    本資料は、ポスター（理論＝査読前プレプリント＋部分均衡の会計シミュレーション）の枠組みを
+    <b>政策実装した場合の説明用イメージ</b>です。将来予測・効果の保証ではありません。
+    数値はシミュレーション本体（simulation_v10）の出力に限定し、制度設計（ポイント先行→法定補完通貨への段階的導入）は一つの実装案として示します。
+  </div>
+
+  <section class="preview">
+    <h2>プレビュー（全9ページ）</h2>
+    <object class="pdf-frame" data="supplement.pdf" type="application/pdf">
+      <iframe class="pdf-frame" src="supplement.pdf" title="補足スライド プレビュー"></iframe>
+    </object>
+    <p class="fallback">表示されない場合は上の「補足スライドを開く（PDF）」からご覧ください。</p>
+  </section>
+
+  <footer>
+    <p><span class="lab">利益相反（COI）開示：</span>　筆頭演者は株式会社アガティカ（医療機関向けキャッシュレス決済アプリ開発）の代表取締役を兼務。本研究に外部資金は使用していない。</p>
+    <p><span class="lab">AI利用開示：</span>　翻訳・文章整形・作図の補助に Claude（Anthropic）・ChatGPT（OpenAI）を使用（ICMJE/COPE準拠）。</p>
+    <p><span class="lab">連絡先：</span>　ainsoph567@gmail.com ／ ORCID 0009-0000-0981-2417 ／ 論文 DOI 10.2139/ssrn.6742898・MPRA 129086</p>
+  </footer>
+</div>
+</body>
+</html>
