@@ -97,7 +97,7 @@
   </div>
 
   <section class="preview">
-    <h2>プレビュー（全9ページ）</h2>
+    <h2 id="previewTitle">プレビュー</h2>
     <object class="pdf-frame" data="supplement.pdf" type="application/pdf">
       <iframe class="pdf-frame" src="supplement.pdf" title="補足スライド プレビュー"></iframe>
     </object>
@@ -110,5 +110,21 @@
     <p><span class="lab">連絡先：</span>　ainsoph567@gmail.com ／ ORCID 0009-0000-0981-2417 ／ 論文 DOI 10.2139/ssrn.6742898・MPRA 129086</p>
   </footer>
 </div>
+
+<!-- 補足PDFの実ページ数を読み取り、プレビュー見出しに反映（PDFを差し替えれば自動追従） -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+  var el = document.getElementById('previewTitle');
+  if (!el || !window.pdfjsLib) return;
+  try {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    pdfjsLib.getDocument('supplement.pdf').promise.then(function(pdf){
+      el.textContent = 'プレビュー（全' + pdf.numPages + 'ページ）';
+    }).catch(function(){ /* 取得失敗時は既定の「プレビュー」を維持 */ });
+  } catch (e) { /* 既定の「プレビュー」を維持 */ }
+})();
+</script>
 </body>
 </html>
