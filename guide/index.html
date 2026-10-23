@@ -166,6 +166,33 @@
   .pan .grow{transition:transform .28s var(--ease), opacity .2s ease}
   #s4-svg{overflow:hidden}
 
+  /* ---------- 画面4 動画（約24秒・4場面）。色は既存の紺・青・淡青・灰だけ。区別は線種と文字ラベル ---------- */
+  .s4-lead{margin-bottom:8px}
+  .s4-stage{padding:6px 6px 8px; margin-bottom:8px}
+  #s4-svg text{font-feature-settings:"palt"}
+  .s4-prog{display:flex; gap:4px; margin:6px 6px 0}
+  .s4-prog i{flex:1; height:4px; border-radius:2px; background:var(--border); overflow:hidden}
+  .s4-prog b{display:block; width:0; height:100%; background:var(--blue)}
+  .s4-cap{display:grid}
+  .s4-c{grid-area:1/1; opacity:0; transform:translateY(4px); transition:opacity .15s ease, transform .15s ease}
+  .s4-c.on{opacity:1; transform:none; transition:opacity .3s ease .12s, transform .3s var(--ease) .12s}
+  .s4-h{margin:0 0 2px; font-size:22px; line-height:1.35; font-weight:700; color:var(--darkNavy); font-feature-settings:"palt"; text-wrap:balance}
+  .s4-t{margin:0; font-size:16px; line-height:1.6; font-feature-settings:"palt"; text-wrap:pretty}
+  .s4-ctl{display:flex; gap:6px; margin:8px 0 0}
+  .s4-b{
+    flex:1 1 auto; display:inline-flex; align-items:center; justify-content:center; gap:4px; min-height:44px; padding:0 6px;
+    border:2px solid var(--navy); border-radius:12px; background:var(--white); color:var(--navy);
+    font-size:16px; font-weight:700; line-height:1.2; white-space:nowrap; cursor:pointer;
+    touch-action:manipulation; -webkit-tap-highlight-color:transparent; transition:transform .12s var(--ease);
+  }
+  .s4-b svg{width:12px; height:12px; flex:none}
+  .s4-b:active{transform:scale(.97)}
+  .s4-b.s4-main{background:var(--navy); color:#fff}
+  .s4-b[aria-disabled="true"]{opacity:.4; cursor:default}
+  .s4-b:focus-visible{outline:3px solid var(--darkNavy); outline-offset:2px}
+  .s4-note{margin-top:8px; line-height:1.55; font-feature-settings:"palt"}
+  #screen-4 .actions{padding-top:10px}
+
   /* ---------- 画面5 ---------- */
   .sum{list-style:none; margin:4px 0 14px; padding:0}
   .sum li{display:grid; grid-template-columns:48px 1fr; gap:12px; align-items:center; padding:10px 0; border-top:1px solid var(--border)}
@@ -359,7 +386,7 @@
     </div>
   </section>
 
-  <!-- ===================== 画面4 なぜ溶かすのか ===================== -->
+  <!-- ===================== 画面4 なぜ溶かすのか（約24秒の動画・4場面） ===================== -->
   <section class="screen" id="screen-4" aria-labelledby="t4" hidden>
     <div class="frame">
       <div class="bar">
@@ -367,33 +394,117 @@
         <div class="steps" role="img" aria-label="全5画面のうち4画面目"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
       </div>
       <h1 id="t4" tabindex="-1">なぜ、溶かすのか</h1>
-      <p class="lead">医療の効果（健康）も時間とともに薄れます。ポイントを同じ速さで溶かすと、使ったお金の消え方と効果の消え方がそろいます。</p>
-      <div class="stage">
-        <svg id="s4-svg" viewBox="0 0 340 202" role="img" aria-label="上下に並んだ2本の帯の模式図。上は薬の効果、下はポイント。時間がたつにつれて、2本とも同じ速さで薄くなる。">
+      <p class="lead s4-lead">治療で回復した健康が年齢とともに低下していく速さに、ポイントの溶ける速さを合わせています。</p>
+      <div class="stage s4-stage">
+        <svg id="s4-svg" viewBox="0 0 340 228" role="img" aria-label="約24秒の動画の模式図。場面1：高齢の患者さんの健康を表す縦のバーが、治療で上に伸びる。右下は治療費として支払われたポイントのコイン。場面2：時間が0か月から24か月へ進み、回復した健康がまた低下していく様子を、右上のグラフに実線で描く。場面3：ポイントのコインも同じ速さで小さくなり、ポイントの価値の破線が健康の実線に重なる。場面4：左は普通のお金で払う場合で、効果が消えても借金が残る。右は溶けるお金で払う場合で、効果と一緒にお金も消え、消えた分だけ新しく発行できる。">
           <defs>
-            <linearGradient id="g-fade" x1="0" x2="1" y1="0" y2="0">
-              <stop offset="0" stop-color="#1B3A5C" stop-opacity="1"/>
-              <stop offset=".25" stop-color="#1B3A5C" stop-opacity=".53"/>
-              <stop offset=".5" stop-color="#1B3A5C" stop-opacity=".28"/>
-              <stop offset=".75" stop-color="#1B3A5C" stop-opacity=".15"/>
-              <stop offset="1" stop-color="#1B3A5C" stop-opacity=".08"/>
-            </linearGradient>
+            <clipPath id="s4-clip"><rect x="70" y="56" width="26" height="144" rx="6"/></clipPath>
           </defs>
-          <text x="16" y="24" font-size="17" font-weight="700" fill="#0F1E3D">薬の効果</text>
-          <rect x="16" y="34" width="308" height="36" rx="10" fill="url(#g-fade)"/>
-          <text x="16" y="104" font-size="17" font-weight="700" fill="#0F1E3D">ポイント</text>
-          <rect x="16" y="114" width="308" height="36" rx="10" fill="url(#g-fade)"/>
-          <g id="s4-cursor">
-            <text x="178" y="24" font-size="16" font-weight="700" fill="#2563EB">同じ濃さ</text>
-            <line x1="170" y1="30" x2="170" y2="156" stroke="#2563EB" stroke-width="2" stroke-dasharray="4 5"/>
+          <!-- 場面1〜3：患者さん・健康のバー・ポイントのコイン・グラフ -->
+          <g id="s4-main">
+            <line x1="2" y1="200" x2="100" y2="200" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/>
+            <g fill="none" stroke="#1B3A5C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M36 152 L28 199 M36 152 L44 199"/>
+              <g id="s4-upper">
+                <path d="M36 152 L36 113"/>
+                <circle cx="36" cy="100" r="11" fill="#fff"/>
+                <path d="M36 120 L27 146"/>
+                <path d="M36 120 L52 140"/>
+              </g>
+              <path id="s4-cane" d="M44 143 Q47 134 52 140 L60 199"/>
+            </g>
+            <text x="83" y="46" text-anchor="middle" font-size="17" font-weight="700" fill="#0F1E3D">健康</text>
+            <rect x="70" y="56" width="26" height="144" rx="6" fill="#fff"/>
+            <g clip-path="url(#s4-clip)">
+              <rect x="70" y="148.2" width="26" height="52" fill="#1B3A5C"/>
+              <rect id="s4-up" x="70" y="148.2" width="26" height="0" fill="#DBEAFE"/>
+              <line id="s4-uptop" x1="70" y1="148.2" x2="96" y2="148.2" stroke="#2563EB" stroke-width="3"/>
+            </g>
+            <rect x="70" y="56" width="26" height="144" rx="6" fill="none" stroke="#64748B" stroke-width="1.5"/>
+            <rect id="s4-peak" x="71" y="76.2" width="24" height="72" fill="none" stroke="#64748B" stroke-width="1.5" stroke-dasharray="4 4" opacity="0"/>
+            <g id="s4-uplab" opacity="0">
+              <line id="s4-brk" x1="101" y1="76.2" x2="101" y2="148.2" stroke="#2563EB" stroke-width="2"/>
+              <text x="106" y="106" font-size="17" font-weight="700" fill="#1B3A5C">回復</text>
+              <text x="106" y="126" font-size="17" font-weight="700" fill="#1B3A5C">した分</text>
+            </g>
+            <text id="s4-hpct" x="106" y="149" font-size="18" font-weight="800" fill="#2563EB" opacity="0">100%</text>
+            <text id="s4-clock" x="2" y="224" font-size="18" font-weight="700" fill="#0F1E3D" opacity="0">治療から 0か月</text>
+            <circle id="s4-coin0" cx="296" cy="188" r="36" fill="none" stroke="#64748B" stroke-width="1.5" stroke-dasharray="4 4" opacity="0"/>
+            <g id="s4-coin">
+              <circle cx="296" cy="188" r="36" fill="#DBEAFE" stroke="#2563EB" stroke-width="3"/>
+              <circle cx="296" cy="188" r="29.5" fill="none" stroke="#2563EB" stroke-width="1.5"/>
+            </g>
+            <text id="s4-cpct" x="296" y="194" text-anchor="middle" font-size="17" font-weight="800" fill="#0F1E3D">100%</text>
+            <text x="258" y="174" text-anchor="end" font-size="17" font-weight="700" fill="#1B3A5C">治療費として</text>
+            <text x="258" y="194" text-anchor="end" font-size="17" font-weight="700" fill="#1B3A5C">支払われた</text>
+            <text x="258" y="214" text-anchor="end" font-size="17" font-weight="700" fill="#1B3A5C">ポイント</text>
+            <g id="s4-tx" transform="translate(252 44)">
+              <rect x="-29" y="-19" width="58" height="38" rx="10" fill="#fff" stroke="#1B3A5C" stroke-width="2.5"/>
+              <g fill="none" stroke="#1B3A5C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M-19 -11 V11 M-19 0 H19 M-19 5 H19 V11"/>
+                <rect x="-16" y="-6" width="9" height="6" rx="2"/>
+                <path d="M-5 0 Q5 -10 17 0"/>
+              </g>
+              <text x="0" y="38" text-anchor="middle" font-size="17" font-weight="700" fill="#1B3A5C">治療</text>
+            </g>
           </g>
-          <line x1="16" y1="176" x2="320" y2="176" stroke="#1B3A5C" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M314 169 L324 176 L314 183" fill="none" stroke="#1B3A5C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="16" y="198" font-size="16" fill="#475569">今</text>
-          <text x="324" y="198" text-anchor="end" font-size="16" fill="#475569">時間がたつ</text>
+          <g id="s4-graph" opacity="0">
+            <path d="M166 14 V118 H331" fill="none" stroke="#64748B" stroke-width="1.5"/>
+            <path d="M326 113 L332 118 L326 123" fill="none" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="166" y="137" font-size="17" fill="#475569">0か月</text>
+            <text id="s4-gend" x="334" y="137" text-anchor="end" font-size="17" fill="#475569">24か月</text>
+            <path id="s4-cs" d="" fill="none" stroke="#2563EB" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="s4-cd" d="" fill="none" stroke="#0F1E3D" stroke-width="2.6" stroke-dasharray="8 6"/>
+            <circle id="s4-dot" cx="166" cy="22" r="5" fill="#fff" stroke="#0F1E3D" stroke-width="2.5" opacity="0"/>
+            <text id="s4-ls" x="334" y="84" text-anchor="end" font-size="17" font-weight="700" fill="#1B3A5C" opacity="0">回復した健康（実線）</text>
+            <text id="s4-ld" x="334" y="106" text-anchor="end" font-size="17" font-weight="700" fill="#0F1E3D" opacity="0">ポイントの価値（破線）</text>
+          </g>
+          <!-- 場面4：普通のお金と溶けるお金の対比（横軸は模式図で、目盛りの数字は出さない） -->
+          <g id="s4-cmp" opacity="0">
+            <line x1="170" y1="6" x2="170" y2="204" stroke="#CBD5E1" stroke-width="1.5"/>
+            <text x="85" y="20" text-anchor="middle" font-size="17" font-weight="700" fill="#0F1E3D">普通のお金で払うと</text>
+            <path d="M14 32 V126 H159" fill="none" stroke="#64748B" stroke-width="1.5"/>
+            <path d="M154 121 L160 126 L154 131" fill="none" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="s4-le" d="" fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect id="s4-debt" x="14" y="33" width="0" height="22" rx="4" fill="#CBD5E1" stroke="#64748B" stroke-width="1.5"/>
+            <text id="s4-debtl" x="20" y="50" text-anchor="end" font-size="17" font-weight="700" fill="#0F1E3D" opacity="0">借金</text>
+            <text id="s4-lel" x="58" y="76" font-size="17" font-weight="700" fill="#1B3A5C" opacity="0">効果（実線）</text>
+            <g id="s4-lb" opacity="0">
+              <text x="85" y="154" text-anchor="middle" font-size="17" font-weight="700" fill="#0F1E3D">効果が消えても、</text>
+              <text x="85" y="176" text-anchor="middle" font-size="17" font-weight="700" fill="#0F1E3D">借金が残る</text>
+            </g>
+            <text x="256" y="20" text-anchor="middle" font-size="17" font-weight="700" fill="#0F1E3D">溶けるお金で払うと</text>
+            <path d="M184 32 V126 H329" fill="none" stroke="#64748B" stroke-width="1.5"/>
+            <path d="M324 121 L330 126 L324 131" fill="none" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="s4-re" d="" fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path id="s4-rm" d="" fill="none" stroke="#0F1E3D" stroke-width="2.4" stroke-dasharray="8 6"/>
+            <g id="s4-rl" opacity="0">
+              <text x="240" y="62" font-size="17" font-weight="700" fill="#1B3A5C">効果（実線）</text>
+              <text x="240" y="84" font-size="17" font-weight="700" fill="#0F1E3D">お金（破線）</text>
+            </g>
+            <g id="s4-rb" opacity="0">
+              <text x="256" y="154" text-anchor="middle" font-size="17" font-weight="700" fill="#0F1E3D">消えた分だけ、</text>
+              <text x="256" y="176" text-anchor="middle" font-size="17" font-weight="700" fill="#0F1E3D">新しく発行できる</text>
+              <text x="256" y="198" text-anchor="middle" font-size="17" font-weight="700" fill="#0F1E3D">（自己償還）</text>
+            </g>
+          </g>
         </svg>
+        <div class="s4-prog" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
       </div>
-      <p class="note">学術上は、健康資本の減耗率（δ）と通貨の減価率（µ）を一致させる設計（著者の論文 Fujii 2026）。帯は同じ速さを仮定した模式図です。</p>
+      <div class="s4-cap" aria-hidden="true">
+        <div class="s4-c on"><p class="s4-h">治療で、健康が回復する</p><p class="s4-t">医療は、低下していた健康を一度引き上げます。</p></div>
+        <div class="s4-c"><p class="s4-h">でも、年齢とともにまた低下していく</p><p class="s4-t">治療の効果は永久ではありません。高齢の患者さんほど、回復した健康はまた速く低下します。この速さが『減耗率』です。</p></div>
+        <div class="s4-c"><p class="s4-h">ポイントも、同じ速さで溶ける</p><p class="s4-t">ポイントの溶ける速さ（減価率）を、健康の低下の速さ（減耗率）に合わせます。効果が残っている間だけ価値があるお金です。</p></div>
+        <div class="s4-c"><p class="s4-h">だから、将来にツケが残らない</p><p class="s4-t">効果が消える頃にはお金も消える。だから借金で返す必要がありません。</p></div>
+      </div>
+      <p class="sr" id="s4-live" aria-live="polite"></p>
+      <div class="s4-ctl" role="group" aria-label="動画の操作">
+        <button type="button" class="s4-b" id="s4-prev"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M11 1.5 2 7l9 5.5Z" fill="currentColor"/></svg>前へ<span class="sr">（前の場面）</span></button>
+        <button type="button" class="s4-b s4-main" id="s4-play"><svg class="i-play" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5 12 7l-9 5.5Z" fill="currentColor"/></svg><svg class="i-pause" viewBox="0 0 14 14" aria-hidden="true" hidden><path d="M2.5 2h3.2v10H2.5zM8.3 2h3.2v10H8.3z" fill="currentColor"/></svg><span id="s4-playtxt">再生</span></button>
+        <button type="button" class="s4-b" id="s4-next">次へ<span class="sr">（次の場面）</span><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5 12 7l-9 5.5Z" fill="currentColor"/></svg></button>
+        <button type="button" class="s4-b" id="s4-again">もう一度</button>
+      </div>
+      <p class="note s4-note">学術上は、健康資本の減耗率（δ）と通貨の減価率（µ）を一致させる設計（著者の論文 Fujii 2026）。曲線は同じ速さを仮定した模式図で、24か月での失効は省いています。</p>
       <div class="actions">
         <button type="button" class="btn primary" data-next>次へ</button>
       </div>
@@ -701,13 +812,223 @@
   };
 
   /* ============================================================
-     画面4：「同じ濃さ」の線が時間の向きに動き、どの時点でも2本の濃さが同じことを見せる
+     画面4：約24秒の動画（4場面）。治療で回復した健康が年齢とともに低下する速さ（減耗率）に、
+     ポイントの溶ける速さ（減価率）を合わせる設計を見せる。
+     曲線・割合はすべて CONFIG.MONTHLY_DECAY から作る（1か月で残る割合 KEEP の月数乗）。
+     動きを減らす設定では動かさず、場面ごとの静止画を「次へ」で送る。
      ============================================================ */
+  var S4_MONTHS = 24;                        // 場面2・3で進める月数（0か月→24か月）
+  var S4_LONG = 150;                         // 場面4の横軸の長さ（月。模式図なので目盛りの数字は出さない）
+  var S4_SC = [0, 4.4, 11.5, 18.6, 24.0];    // 各場面の開始時刻（秒）と、動画の終わり
+  var S4_DUR = S4_SC[4];
+  var S4_KEY = [4.3, 11.4, 18.5, 24.0];       // 各場面の静止画の時刻（その場面の動きが終わった状態）
+  var S4G = { x0: 166, x1: 330, yb: 118, h: 96 };   // 場面2・3のグラフ
+  var S4L = { x0: 14, x1: 154, yb: 126, h: 82 };    // 場面4の左（普通のお金）
+  var S4R = { x0: 184, x1: 324, yb: 126, h: 82 };   // 場面4の右（溶けるお金）
+  var S4BAR = { top: 56, bottom: 200, base: 0.36, up: 0.5 };   // 健康のバー（治療前の高さと、治療で上乗せされる高さ）
+  var S4HIP = { x: 36, y: 152 };                                // 患者さんの腰（前かがみの回転の中心）
+
+  var s4 = {
+    upper: $('s4-upper'), cane: $('s4-cane'), up: $('s4-up'), uptop: $('s4-uptop'), peak: $('s4-peak'),
+    uplab: $('s4-uplab'), brk: $('s4-brk'), hpct: $('s4-hpct'), clock: $('s4-clock'),
+    coin: $('s4-coin'), coin0: $('s4-coin0'), cpct: $('s4-cpct'), tx: $('s4-tx'), main: $('s4-main'),
+    graph: $('s4-graph'), cs: $('s4-cs'), cd: $('s4-cd'), dot: $('s4-dot'), ls: $('s4-ls'), ld: $('s4-ld'),
+    cmp: $('s4-cmp'), le: $('s4-le'), debt: $('s4-debt'), debtl: $('s4-debtl'), lel: $('s4-lel'), lb: $('s4-lb'),
+    re: $('s4-re'), rm: $('s4-rm'), rl: $('s4-rl'), rb: $('s4-rb'),
+    caps: document.querySelectorAll('#screen-4 .s4-c'), prog: document.querySelectorAll('#screen-4 .s4-prog b'),
+    live: $('s4-live'), prev: $('s4-prev'), play: $('s4-play'), playtxt: $('s4-playtxt'), next: $('s4-next'), again: $('s4-again'),
+    iPlay: document.querySelector('#s4-play .i-play'), iPause: document.querySelector('#s4-play .i-pause'),
+    t: 0, playing: false, raf: 0, last: 0, held: -1, shown: -1, timer: 0
+  };
+  $('s4-gend').textContent = S4_MONTHS + 'か月';
+
+  function clamp01(x) { return x < 0 ? 0 : (x > 1 ? 1 : x); }
+  function seg(t, a, b) { return clamp01((t - a) / (b - a)); }
+  function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
+  function easeInOut(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+  function lerp(a, b, x) { return a + (b - a) * x; }
+  function keepFor(m) { return Math.pow(KEEP, m); }     // m か月後に残る割合（KEEP＝1−毎月の減価率）
+  function f1(x) { return x.toFixed(1); }
+  function curveD(g, span, mTo) {                      // 0か月から mTo か月までの曲線
+    if (mTo <= 0) return '';
+    var n = Math.max(2, Math.ceil(mTo / span * 48)), d = '';
+    for (var i = 0; i <= n; i++) {
+      var m = mTo * i / n;
+      d += (i ? 'L' : 'M') + f1(g.x0 + (g.x1 - g.x0) * m / span) + ' ' + f1(g.yb - g.h * keepFor(m));
+    }
+    return d;
+  }
+  function s4Scene(t) { for (var i = 3; i > 0; i--) { if (t >= S4_SC[i]) return i; } return 0; }
+  function s4Months(t) {                               // 時間カウンタの月数
+    if (t < 5.0) return 0;
+    if (t < 10.0) return S4_MONTHS * seg(t, 5.0, 10.0);                        // 場面2：0→24か月
+    if (t < 11.5) return S4_MONTHS;
+    if (t < 12.1) return S4_MONTHS * (1 - easeInOut(seg(t, 11.5, 12.1)));      // 場面3：同じ期間をもう一度
+    if (t < 17.1) return S4_MONTHS * seg(t, 12.1, 17.1);
+    return S4_MONTHS;
+  }
+
+  function s4Render(t) {
+    var m = s4Months(t), mi = Math.round(m);
+    var grow = easeOut(seg(t, 1.2, 2.4));                // 場面1：治療で上乗せ分が伸びる
+    var h = grow * keepFor(m);                            // 回復した分のうち、残っている割合
+    var hp = S4BAR.base + S4BAR.up * h;                   // 健康全体の高さ（0〜1）
+    var span = S4BAR.bottom - S4BAR.top;
+    var baseTop = S4BAR.bottom - span * S4BAR.base;
+    var upH = span * S4BAR.up * h;
+
+    // 患者さん：健康が下がると前かがみになる
+    var ang = 30 * (1 - hp), r = ang * Math.PI / 180;
+    s4.upper.setAttribute('transform', 'rotate(' + ang.toFixed(2) + ' ' + S4HIP.x + ' ' + S4HIP.y + ')');
+    var dx = 52 - S4HIP.x, dy = 140 - S4HIP.y;
+    var hx = S4HIP.x + dx * Math.cos(r) - dy * Math.sin(r), hy = S4HIP.y + dx * Math.sin(r) + dy * Math.cos(r);
+    s4.cane.setAttribute('d', 'M' + f1(hx - 8) + ' ' + f1(hy + 3) + ' Q' + f1(hx - 5) + ' ' + f1(hy - 6) + ' ' + f1(hx) + ' ' + f1(hy) + ' L60 199');
+
+    // 健康のバー：上乗せ分（淡青）と、治療直後の高さ（点線の枠）
+    s4.up.setAttribute('y', f1(baseTop - upH));
+    s4.up.setAttribute('height', f1(upH));
+    s4.uptop.setAttribute('y1', f1(baseTop - upH));
+    s4.uptop.setAttribute('y2', f1(baseTop - upH));
+    s4.uptop.style.opacity = upH > 0.5 ? '1' : '0';
+    s4.peak.style.opacity = String(seg(t, 2.4, 2.8));
+    s4.brk.setAttribute('y1', f1(baseTop - upH));
+    s4.uplab.style.opacity = String(seg(t, 1.8, 2.4));
+    s4.hpct.textContent = Math.round(100 * keepFor(mi)) + '%';
+    s4.hpct.style.opacity = String(seg(t, 4.4, 4.8));
+    s4.clock.textContent = '治療から ' + mi + 'か月';
+    s4.clock.style.opacity = String(seg(t, 4.4, 4.8));
+
+    // 治療のアイコンが右上から患者さんへ届く
+    var b = easeInOut(seg(t, 0.3, 1.4));
+    s4.tx.setAttribute('transform', 'translate(' + f1(lerp(252, 33, b)) + ' ' + f1(lerp(44, 34, b)) + ')');
+
+    // ポイントのコイン：場面3で、健康と同じ割合だけ溶ける（面積を価値に比例させる）
+    var cv = t < 12.1 ? 1 : keepFor(m);
+    var cs = Math.sqrt(cv).toFixed(3);
+    s4.coin.setAttribute('transform', 'translate(296 188) scale(' + cs + ') translate(-296 -188)');
+    s4.coin0.style.opacity = String(seg(t, 12.1, 12.5));
+    s4.cpct.textContent = Math.round(100 * (t < 12.1 ? 1 : keepFor(mi))) + '%';
+
+    // グラフ：回復した健康（実線）と、ポイントの価値（破線）
+    s4.graph.style.opacity = String(seg(t, 4.4, 5.0) * (1 - seg(t, 18.6, 19.1)));
+    s4.cs.setAttribute('d', curveD(S4G, S4_MONTHS, t < 5.0 ? 0 : (t < 10.0 ? m : S4_MONTHS)));
+    s4.cd.setAttribute('d', curveD(S4G, S4_MONTHS, t < 12.1 ? 0 : (t < 17.1 ? m : S4_MONTHS)));
+    s4.dot.setAttribute('cx', f1(S4G.x0 + (S4G.x1 - S4G.x0) * m / S4_MONTHS));
+    s4.dot.setAttribute('cy', f1(S4G.yb - S4G.h * keepFor(m)));
+    s4.dot.style.opacity = (t >= 5.0 && t < 18.6) ? '1' : '0';
+    s4.ls.style.opacity = String(seg(t, 5.0, 5.5));
+    s4.ld.style.opacity = String(seg(t, 11.5, 12.0));
+
+    // 場面4へ：場面1〜3の絵が小さくなりながら退き、同じ場所に2コマの対比が現れる（重ねて切り替える）
+    var out = easeOut(seg(t, 18.6, 19.2)), inn = easeOut(seg(t, 18.8, 19.4));
+    s4.main.style.opacity = String(1 - out);
+    s4.main.setAttribute('transform', out > 0 ? 'translate(120 130) scale(' + (1 - 0.08 * out).toFixed(3) + ') translate(-120 -130)' : '');
+    s4.cmp.style.opacity = String(inn);
+    s4.cmp.setAttribute('transform', inn < 1 ? 'translate(0 ' + f1(8 * (1 - inn)) + ')' : '');
+    var p = seg(t, 19.4, 22.4), ml = S4_LONG * p;
+    s4.le.setAttribute('d', curveD(S4L, S4_LONG, ml));
+    s4.re.setAttribute('d', curveD(S4R, S4_LONG, ml));
+    s4.rm.setAttribute('d', curveD(S4R, S4_LONG, ml));
+    var dw = (S4L.x1 - S4L.x0) * p;                       // 借金は時間がたっても同じ高さのまま残る
+    s4.debt.setAttribute('width', f1(dw));
+    s4.debtl.setAttribute('x', f1(S4L.x0 + dw - 6));
+    s4.debtl.style.opacity = dw > 48 ? '1' : '0';
+    s4.lel.style.opacity = String(seg(p, 0.3, 0.45));
+    s4.rl.style.opacity = String(seg(p, 0.3, 0.45));
+    s4.lb.style.opacity = String(seg(t, 22.0, 22.5));
+    s4.rb.style.opacity = String(seg(t, 22.4, 22.9));
+
+    // 字幕と進み具合
+    var k = s4.held >= 0 ? s4.held : s4Scene(t);
+    if (k !== s4.shown) {
+      s4.shown = k;
+      Array.prototype.forEach.call(s4.caps, function (c, i) { c.classList.toggle('on', i === k); });
+      var c = s4.caps[k];
+      s4.live.textContent = '場面' + (k + 1) + '／4。' + c.querySelector('.s4-h').textContent + '。' + c.querySelector('.s4-t').textContent;
+    }
+    Array.prototype.forEach.call(s4.prog, function (el, i) {
+      var f = i < k ? 1 : (i > k ? 0 : (s4.held >= 0 ? 1 : seg(t, S4_SC[i], S4_SC[i + 1])));
+      el.style.width = (f * 100).toFixed(1) + '%';
+    });
+  }
+
+  function s4Buttons() {
+    var k = s4.held >= 0 ? s4.held : s4Scene(s4.t);
+    s4.playtxt.textContent = s4.playing ? '一時停止' : '再生';
+    if (s4.playing) { s4.iPlay.setAttribute('hidden', ''); s4.iPause.removeAttribute('hidden'); }
+    else { s4.iPause.setAttribute('hidden', ''); s4.iPlay.removeAttribute('hidden'); }
+    s4.prev.setAttribute('aria-disabled', k === 0 ? 'true' : 'false');
+    s4.next.setAttribute('aria-disabled', k === 3 ? 'true' : 'false');
+  }
+  function s4Tick(now) {
+    s4.raf = 0;
+    if (!s4.playing) return;
+    if (cur !== 4) { s4.playing = false; s4Buttons(); return; }   // 別の画面へ移ったら止める
+    var dt = s4.last ? Math.min((now - s4.last) / 1000, 0.1) : 0;
+    s4.last = now;
+    s4.t = Math.min(s4.t + dt, S4_DUR);
+    s4Render(s4.t);
+    if (s4.t >= S4_DUR) { s4.playing = false; s4Buttons(); return; }
+    s4.raf = requestAnimationFrame(s4Tick);
+  }
+  function s4Play() {
+    if (reduced()) return;
+    if (s4.held >= 0) { s4.t = S4_SC[s4.held]; s4.held = -1; }
+    else if (s4.t >= S4_DUR) { s4.t = 0; }
+    s4.playing = true;
+    s4.last = 0;
+    s4Render(s4.t);
+    s4Buttons();
+    if (!s4.raf) s4.raf = requestAnimationFrame(s4Tick);
+  }
+  function s4Pause() {
+    s4.playing = false;
+    if (s4.raf) { cancelAnimationFrame(s4.raf); s4.raf = 0; }
+    s4Buttons();
+  }
+  function s4Hold(k) {                                  // 場面 k の静止画を出す
+    s4Pause();
+    s4.held = k;
+    s4.t = S4_KEY[k];
+    s4Render(s4.t);
+    s4Buttons();
+  }
+  function s4Step(dir) {
+    var k = s4.held >= 0 ? s4.held : s4Scene(s4.t);
+    var n = k + dir;
+    if (n < 0 || n > 3) return;
+    if (s4.playing && !reduced()) { s4.t = S4_SC[n]; s4Render(s4.t); s4Buttons(); }
+    else s4Hold(n);
+  }
+  function s4Restart() {
+    clearTimeout(s4.timer);
+    s4Pause();
+    s4.held = -1;
+    s4.t = 0;
+    if (reduced()) { s4Hold(0); return; }
+    s4Play();
+  }
+
+  s4.play.addEventListener('click', function () { if (s4.playing) s4Pause(); else s4Play(); });
+  s4.prev.addEventListener('click', function () { s4Step(-1); });
+  s4.next.addEventListener('click', function () { s4Step(1); });
+  s4.again.addEventListener('click', s4Restart);
+  window.addEventListener('hashchange', function () {   // 画面4から離れたら、その場で止める
+    if (cur !== 4) { clearTimeout(s4.timer); if (s4.playing) s4Pause(); }
+  });
+
   onEnter[4] = function () {
-    var c = $('s4-cursor');
-    if (reduced() || !c.animate || document.visibilityState !== 'visible') return;
-    c.animate([{ transform: 'translateX(-90px)' }, { transform: 'translateX(0px)' }],
-              { duration: 600, delay: 150, easing: 'cubic-bezier(.25,1,.5,1)', fill: 'backwards' });
+    clearTimeout(s4.timer);
+    s4Pause();
+    s4.held = -1;
+    s4.t = 0;
+    s4.shown = -1;
+    var still = reduced();
+    s4.play.hidden = still;                            // 動きを減らす設定では「再生」を出さない
+    if (still) { s4Hold(0); return; }
+    s4Render(0);
+    s4Buttons();
+    s4.timer = setTimeout(function () { if (cur === 4) s4Play(); }, 450);
   };
 
   /* ============================================================
